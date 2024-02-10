@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { toHex, toColorHex, blockAmounts } from "./hex";
+import { blockAmounts } from "./hsl";
 import "./App.css";
 
 const colorBlock = (n: number) => {
-  return <span style={{ color: `#${toColorHex(n)}` }}>■</span>;
+  if (n == 360) {
+    return <span style={{ color: `hsl(0 0% 0%)` }}>■</span>;
+  }
+
+  return <span style={{ color: `hsl(${n} 50% 50%)` }}>■</span>;
 };
 
 const totalBlocks = (total: number) =>
@@ -13,9 +17,7 @@ function App() {
   const [total, setTotal] = useState(0);
 
   const adderButton = (n: number) => (
-    <button onClick={() => setTotal((total) => total + n)}>
-      Add {toHex(n)}
-    </button>
+    <button onClick={() => setTotal((total) => total + n)}>Add {n}</button>
   );
 
   return (
@@ -23,12 +25,12 @@ function App() {
       <h1>Color Clicker</h1>
       <div>
         <div>Total: {totalBlocks(total)}</div>
-        {adderButton(0x1)}
-        {adderButton(0x10)}
-        {adderButton(0x100)}
-        {adderButton(0x1000)}
-        {adderButton(0x10000)}
-        {adderButton(0x100000)}
+        {adderButton(1)}
+        {adderButton(10)}
+        {adderButton(100)}
+        {adderButton(1000)}
+        {adderButton(10000)}
+        {adderButton(100000)}
       </div>
     </>
   );
