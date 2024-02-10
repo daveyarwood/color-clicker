@@ -25,9 +25,14 @@ Reference:
 
 ## TODO
 
-* Pay for an auto-clicker
+* "Paid" features:
+  * Line wrapping
+  * Larger increments (e.g. 15, 30, 45)
+  * Auto-clicker
+  * Upgrade auto-clicker (increase rate/increment)
+  * Lotto ticket
 
-* Pay to upgrade auto-clicker (increase rate/increment)
+* Fake "ads" for the paid features ("tired of clicking?")
 
 * Incorporate shapes as well, e.g. other characters from the [UTF-8 Geometric
   Shapes][utf-geometric] charset. This could be useful for later in the game
@@ -44,6 +49,8 @@ Reference:
   * Invest color currency on the stock market and/or cryptocurrency (ColorCoin)
   * Something AI related?
   * Society simulator? (jobs, à la Kittens game, Age of Empires)
+
+* Make this game more accessible to colorblind people, e.g. Monochrome mode
 
 [color-models-and-spaces]: https://programmingdesignsystems.com/color/color-models-and-color-spaces/index.html
 [modern-css-colors]: https://www.smashingmagazine.com/2021/11/guide-modern-css-colors/
