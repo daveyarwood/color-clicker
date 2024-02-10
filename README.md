@@ -25,6 +25,8 @@ Reference:
 
 ## TODO
 
+* Admin panel to assist with development
+
 * "Paid" features:
   * Line wrapping
   * Larger increments (e.g. 15, 30, 45)
