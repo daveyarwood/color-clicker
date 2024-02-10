@@ -2,13 +2,14 @@ import { useState } from "react";
 import { blockAmounts } from "./hsl";
 import "./App.css";
 
-const colorBlock = (n: number) => {
-  if (n == 360) {
-    return <span style={{ color: `hsl(0 0% 0%)` }}>■</span>;
-  }
-
-  return <span style={{ color: `hsl(${n} 50% 50%)` }}>■</span>;
-};
+const colorBlock = (n: number) => (
+  <span
+    key={crypto.randomUUID()}
+    style={{ color: n == 360 ? "hsl(0 0% 0%)" : `hsl(${n} 50% 50%)` }}
+  >
+    ■
+  </span>
+);
 
 const totalBlocks = (total: number) =>
   blockAmounts(total).map((n) => colorBlock(n));
@@ -17,7 +18,9 @@ function App() {
   const [total, setTotal] = useState(0);
 
   const adderButton = (n: number) => (
-    <button onClick={() => setTotal((total) => total + n)}>Add {n}</button>
+    <button key={n} onClick={() => setTotal((total) => total + n)}>
+      Add {n}
+    </button>
   );
 
   return (
