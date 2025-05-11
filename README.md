@@ -16,7 +16,29 @@ find . -type f -name '*.ts' | entr -r bash -c "npx vitest run"
 
 ## Color currency
 
-Reference:
+### Overview
+
+The core mechanic of this game is the visual representation of currency as
+colored blocks. This is based on the HSL, with the Saturation and Light
+components always set to 50%, and the Hue component cycling through the range
+from 0 to 360°. Because 0° and 360° are visually the same color, we represent
+360° as solid black (HSL: 0, 0, 0).
+
+In effect, the numbers 0 through 360 are represented as a single block, where
+the color starts at red (0°), goes through yellow (60°), green (120°), cyan
+(180°), blue (240°), and magenta (300°) before returning to red (359°) and then
+finally settling at black (360°).
+
+The next 360 numbers (361-720) are represented as a second block, which works
+the same way, cycling through the color spectrum again until it reaches its full
+value and then becoming black.
+
+In other words, every black square is worth 360, and every colored square is
+worth between 1 and 359, depending on the hue. Each time you earn a black square
+(360), you keep it and begin earning a new square as it cycles through the
+colors and eventually becomes black.
+
+### Reference
 
 * [Color models and color spaces][color-models-and-spaces]
 
