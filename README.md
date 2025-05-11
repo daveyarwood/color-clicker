@@ -8,10 +8,14 @@ To serve the app locally and automatically recompile whenever code changes:
 yarn dev
 ```
 
-To automatically run tests every time code changes:
+To run tests:
 
 ```bash
-find . -type f -name '*.ts' | entr -r bash -c "npx vitest run"
+# Run the tests once
+npx vitest run
+
+# Automatically re-run tests every time code changes
+npx vitest
 ```
 
 ## Color currency
