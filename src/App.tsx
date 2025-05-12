@@ -1,19 +1,7 @@
 import { useState, useEffect } from "react";
-import { blockAmounts } from "./hsl";
+import { renderColorBlocks } from "./hsl.tsx";
 import { Shop } from "./components/Shop";
 import "./components/Shop.css";
-
-const colorBlock = (n: number) => (
-  <span
-    key={crypto.randomUUID()}
-    style={{ color: n == 360 ? "hsl(0 0% 0%)" : `hsl(${n} 50% 50%)` }}
-  >
-    ■
-  </span>
-);
-
-const totalBlocks = (total: number) =>
-  blockAmounts(total).map((n) => colorBlock(n));
 
 const DISPLAY_CORE_MECHANIC_HINT_MIN = 1;
 const DISPLAY_CORE_MECHANIC_HINT_MAX = 50;
@@ -76,13 +64,13 @@ function App() {
     <div className="game-container">
       <h1>Color Clicker</h1>
       <div className="total-display">
-        Total: {totalBlocks(total)}
+        Total: {renderColorBlocks(total)}
         {total >= DISPLAY_CORE_MECHANIC_HINT_MIN &&
           total <= DISPLAY_CORE_MECHANIC_HINT_MAX &&
           coreMechanicHint(total)}
       </div>
       <button key="adder-button" onClick={handleClick}>
-        Click me! (+{clickIncrement})
+        +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
       </button>
 
       <Shop total={total} onPurchase={handlePurchase} />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { renderColorBlocks } from "../hsl.tsx";
 
 export interface ShopItem {
   id: string;
@@ -19,16 +20,16 @@ export function Shop({ total, onPurchase }: ShopProps) {
   const [items, setItems] = useState<ShopItem[]>([
     {
       id: "increment",
-      name: "Bigger Increment",
-      description: "Click value +1",
+      name: "Shade Enhancer",
+      description: "Each click gives +1 more Shade",
       cost: 50,
       unlockAt: 30,
       purchased: false,
     },
     {
       id: "auto-clicker",
-      name: "Auto Clicker",
-      description: "Clicks for you once per second",
+      name: "Shade Collector",
+      description: "Automatically collects 1 Shade per second",
       cost: 100,
       unlockAt: 60,
       purchased: false,
@@ -36,7 +37,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "wrap",
       name: "Line Wrapping",
-      description: "Makes the display wrap to multiple lines",
+      description: "Makes the total display wrap to multiple lines",
       cost: 150,
       unlockAt: 100,
       purchased: false,
@@ -71,7 +72,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
             <div className="shop-item-info">
               <h3>{item.name}</h3>
               <p>{item.description}</p>
-              <p className="shop-item-cost">Cost: {item.cost}</p>
+              <p className="shop-item-cost">Cost: {renderColorBlocks(item.cost)}</p>
             </div>
             <button
               onClick={() => handlePurchase(item)}
