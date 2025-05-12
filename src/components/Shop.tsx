@@ -53,7 +53,10 @@ export function Shop({ total, onPurchase }: ShopProps) {
   };
 
   // Only display items that should be unlocked based on the player's progress
-  const availableItems = items.filter((item) => total >= item.unlockAt);
+  // and filter out purchased items
+  const availableItems = items.filter(
+    (item) => total >= item.unlockAt && !item.purchased
+  );
 
   if (availableItems.length === 0) {
     return null;
@@ -72,9 +75,9 @@ export function Shop({ total, onPurchase }: ShopProps) {
             </div>
             <button
               onClick={() => handlePurchase(item)}
-              disabled={total < item.cost || item.purchased}
+              disabled={total < item.cost}
             >
-              {item.purchased ? "Purchased" : "Buy"}
+              Buy
             </button>
           </div>
         ))}
