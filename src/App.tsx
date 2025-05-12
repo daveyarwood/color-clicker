@@ -3,8 +3,7 @@ import { renderColorBlocks } from "./hsl";
 import { Shop } from "./components/Shop";
 import "./components/Shop.css";
 
-const DISPLAY_CORE_MECHANIC_HINT_MIN = 1;
-const DISPLAY_CORE_MECHANIC_HINT_MAX = 50;
+const DISPLAY_CORE_MECHANIC_HINT_MAX = 50; // When to stop showing the hint
 
 /**
  * A hint for the core mechanic of the game, displayed at the very beginning and
@@ -31,6 +30,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [clickIncrement, setClickIncrement] = useState(1);
   const [autoClickerActive, setAutoClickerActive] = useState(false);
+  const [shouldShowHint, setShouldShowHint] = useState(true);
 
   const handleClick = () => {
     setTotal((prev) => prev + clickIncrement);
@@ -60,14 +60,19 @@ function App() {
     }
   }, [autoClickerActive]);
 
+  // Check if we should hide the hint permanently
+  useEffect(() => {
+    if (total > DISPLAY_CORE_MECHANIC_HINT_MAX && shouldShowHint) {
+      setShouldShowHint(false);
+    }
+  }, [total, shouldShowHint]);
+
   return (
     <div className="game-container">
       <h1>Color Clicker</h1>
       <div className="total-display">
         Total: {renderColorBlocks(total)}
-        {total >= DISPLAY_CORE_MECHANIC_HINT_MIN &&
-          total <= DISPLAY_CORE_MECHANIC_HINT_MAX &&
-          coreMechanicHint(total)}
+        {shouldShowHint && total >= 1 && coreMechanicHint(total)}
       </div>
       <button key="adder-button" onClick={handleClick}>
         +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
