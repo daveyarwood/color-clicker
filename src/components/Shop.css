@@ -1,0 +1,50 @@
+.shop {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid hsl(0 0% 80%);
+}
+
+.shop h2 {
+  margin-top: 0;
+}
+
+.shop-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.shop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: hsl(0 0% 95%);
+  border-radius: 0.5rem;
+}
+
+.shop-item-info {
+  text-align: left;
+}
+
+.shop-item-info h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.shop-item-info p {
+  margin: 0;
+}
+
+.shop-item-cost {
+  font-weight: bold;
+  margin-top: 0.5rem !important;
+}
+
+.shop-item button {
+  min-width: 100px;
+}
+
+.shop-item button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

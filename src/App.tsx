@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { blockAmounts } from "./hsl";
+import { Shop } from "./components/Shop";
+import "./components/Shop.css";
 
 const colorBlock = (n: number) => (
   <span
@@ -39,6 +41,36 @@ const coreMechanicHint = (total: number) => {
 
 function App() {
   const [total, setTotal] = useState(0);
+  const [clickIncrement, setClickIncrement] = useState(1);
+  const [autoClickerActive, setAutoClickerActive] = useState(false);
+
+  const handleClick = () => {
+    setTotal((prev) => prev + clickIncrement);
+  };
+
+  const handlePurchase = (itemId: string, cost: number) => {
+    setTotal((prev) => prev - cost);
+
+    switch (itemId) {
+      case "increment":
+        setClickIncrement((prev) => prev + 1);
+        break;
+      case "auto-clicker":
+        setAutoClickerActive(true);
+        break;
+      // Add other item effects here
+    }
+  };
+
+  // Set up auto-clicker effect
+  useEffect(() => {
+    if (autoClickerActive) {
+      const interval = setInterval(() => {
+        setTotal((prev) => prev + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [autoClickerActive]);
 
   return (
     <div className="game-container">
@@ -49,9 +81,11 @@ function App() {
           total <= DISPLAY_CORE_MECHANIC_HINT_MAX &&
           coreMechanicHint(total)}
       </div>
-      <button key="adder-button" onClick={() => setTotal((total) => total + 1)}>
-        Click me!
+      <button key="adder-button" onClick={handleClick}>
+        Click me! (+{clickIncrement})
       </button>
+
+      <Shop total={total} onPurchase={handlePurchase} />
     </div>
   );
 }
