@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { blockAmounts } from "../src/hsl.tsx";
+import { blockAmounts } from "../src/hsl";
 
 test("blockAmounts", () => {
   expect(blockAmounts(0)).toEqual([0]);

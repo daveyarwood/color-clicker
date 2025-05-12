@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { renderColorBlocks } from "../hsl.tsx";
+import { renderColorBlocks } from "../hsl";
 
 export interface ShopItem {
   id: string;

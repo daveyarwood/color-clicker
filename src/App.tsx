@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { renderColorBlocks } from "./hsl.tsx";
+import { renderColorBlocks } from "./hsl";
 import { Shop } from "./components/Shop";
 import "./components/Shop.css";
 
