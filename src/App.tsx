@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { blockAmounts } from "./hsl";
-import "./App.css";
 
 const colorBlock = (n: number) => (
   <span
@@ -42,23 +41,18 @@ function App() {
   const [total, setTotal] = useState(0);
 
   return (
-    <>
+    <div className="game-container">
       <h1>Color Clicker</h1>
-      <div>
-        <div>
-          Total: {totalBlocks(total)}
-          {total >= DISPLAY_CORE_MECHANIC_HINT_MIN &&
-            total <= DISPLAY_CORE_MECHANIC_HINT_MAX &&
-            coreMechanicHint(total)}
-        </div>
-        <button
-          key="adder-button"
-          onClick={() => setTotal((total) => total + 1)}
-        >
-          Click me!
-        </button>
+      <div className="total-display">
+        Total: {totalBlocks(total)}
+        {total >= DISPLAY_CORE_MECHANIC_HINT_MIN &&
+          total <= DISPLAY_CORE_MECHANIC_HINT_MAX &&
+          coreMechanicHint(total)}
       </div>
-    </>
+      <button key="adder-button" onClick={() => setTotal((total) => total + 1)}>
+        Click me!
+      </button>
+    </div>
   );
 }
 
