@@ -1,5 +1,11 @@
 # color-clicker
 
+## Deployment
+
+This project is automatically deployed to GitHub Pages via GitHub Actions on every push to the main branch.
+
+You can view the live version at: https://daveyarwood.github.io/color-clicker/
+
 ## Development
 
 To serve the app locally and automatically recompile whenever code changes:
