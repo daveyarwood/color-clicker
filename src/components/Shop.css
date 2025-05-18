@@ -35,7 +35,10 @@
 .shop-item.unaffordable {
   opacity: 0.6;
   cursor: default;
+  position: relative;
 }
+
+/* Using native browser tooltips via title attribute */
 
 .shop-item-info {
   text-align: left;

@@ -199,6 +199,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
               key={item.id} 
               className={`shop-item ${canAfford ? 'affordable' : 'unaffordable'}`}
               onClick={() => canAfford && handlePurchase(item)}
+              title={!canAfford ? "You don't have enough Shades to buy this upgrade." : ""}
             >
               <div className="shop-item-info">
                 <h3>{item.name}</h3>
