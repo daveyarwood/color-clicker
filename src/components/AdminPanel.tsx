@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./AdminPanel.css";
 
 interface AdminPanelProps {
@@ -12,10 +12,12 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
   // State for total input
   const [totalInputValue, setTotalInputValue] = useState(total.toString());
   const [isTotalEditing, setIsTotalEditing] = useState(false);
+  const totalInputRef = useRef<HTMLInputElement>(null);
   
   // State for rate input
   const [rateInputValue, setRateInputValue] = useState(rate.toString());
   const [isRateEditing, setIsRateEditing] = useState(false);
+  const rateInputRef = useRef<HTMLInputElement>(null);
   
   // Update input values when props change (only when not editing)
   useEffect(() => {
@@ -33,6 +35,12 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
   // Handle total change
   const handleTotalEdit = () => {
     setIsTotalEditing(true);
+    // Focus the input after the state update
+    setTimeout(() => {
+      if (totalInputRef.current) {
+        totalInputRef.current.focus();
+      }
+    }, 0);
   };
   
   const handleTotalSave = () => {
@@ -49,6 +57,12 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
   // Handle rate change
   const handleRateEdit = () => {
     setIsRateEditing(true);
+    // Focus the input after the state update
+    setTimeout(() => {
+      if (rateInputRef.current) {
+        rateInputRef.current.focus();
+      }
+    }, 0);
   };
   
   const handleRateSave = () => {
@@ -68,6 +82,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
       <div className="admin-control">
         <label>Total:</label>
         <input
+          ref={totalInputRef}
           type="text"
           value={totalInputValue}
           onChange={(e) => setTotalInputValue(e.target.value)}
@@ -88,6 +103,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
       <div className="admin-control">
         <label>Rate:</label>
         <input
+          ref={rateInputRef}
           type="text"
           value={rateInputValue}
           onChange={(e) => setRateInputValue(e.target.value)}
