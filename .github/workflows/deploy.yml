@@ -19,13 +19,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'yarn'
+          # Disable caching to ensure fresh builds
+          # cache: 'yarn'
       
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --force
       
-      - name: Build
-        run: yarn build
+      - name: Clean and Build
+        run: |
+          rm -rf dist
+          rm -rf node_modules/.vite
+          yarn build
       
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
