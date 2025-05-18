@@ -34,6 +34,7 @@ function App() {
   const [clickIncrement, setClickIncrement] = useState(1);
   const [autoClickRate, setAutoClickRate] = useState(0);
   const [shouldShowHint, setShouldShowHint] = useState(true);
+  const [lineWrappingEnabled, setLineWrappingEnabled] = useState(false);
 
   const handleClick = () => {
     setTotal((prev) => prev + clickIncrement);
@@ -48,6 +49,9 @@ function App() {
         break;
       case "auto-clicker":
         setAutoClickRate((prev) => (prev > 0 ? prev : 1));
+        break;
+      case "wrap":
+        setLineWrappingEnabled(true);
         break;
       // Add other item effects here
     }
@@ -74,7 +78,10 @@ function App() {
     <div className="game-container">
       <h1>Color Clicker</h1>
       <div className="total-display">
-        Total: {renderColorBlocks(total)}
+        Total: 
+        <span className={lineWrappingEnabled ? "wrapped-blocks" : ""}>
+          {renderColorBlocks(total)}
+        </span>
         {shouldShowHint && total >= 1 && coreMechanicHint(total)}
         {autoClickRate > 0 && (
           <span className="rate-display">

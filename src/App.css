@@ -10,3 +10,11 @@
   font-style: italic;
   margin-left: 5px;
 }
+
+.wrapped-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+}

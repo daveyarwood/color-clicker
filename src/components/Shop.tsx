@@ -38,8 +38,8 @@ export function Shop({ total, onPurchase }: ShopProps) {
       id: "wrap",
       name: "Line Wrapping",
       description: "Makes the total display wrap to multiple lines",
-      cost: 150,
-      unlockAt: 100,
+      cost: 2500,
+      unlockAt: 10800,  // Appears when display becomes annoyingly long (30 blocks)
       purchased: false,
     },
   ]);
