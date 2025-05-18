@@ -72,6 +72,11 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
           value={totalInputValue}
           onChange={(e) => setTotalInputValue(e.target.value)}
           disabled={!isTotalEditing}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && isTotalEditing) {
+              handleTotalSave();
+            }
+          }}
         />
         {isTotalEditing ? (
           <button onClick={handleTotalSave}>Save</button>
@@ -87,6 +92,11 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
           value={rateInputValue}
           onChange={(e) => setRateInputValue(e.target.value)}
           disabled={!isRateEditing}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && isRateEditing) {
+              handleRateSave();
+            }
+          }}
         />
         {isRateEditing ? (
           <button onClick={handleRateSave}>Save</button>
