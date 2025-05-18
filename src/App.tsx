@@ -86,9 +86,39 @@ function App() {
   // Set up auto-clicker effect
   useEffect(() => {
     if (autoClickRate > 0) {
+      // Choose a reasonable number of updates per second based on the rate
+      // Higher rates get more frequent updates for smoother visualization
+      let updatesPerSecond;
+      
+      if (autoClickRate === 1) {
+        updatesPerSecond = 1; // Just update once per second for rate of 1
+      } else if (autoClickRate <= 10) {
+        updatesPerSecond = 5; // Update 5 times per second for rates 2-10
+      } else {
+        updatesPerSecond = 10; // Update 10 times per second for rates > 10
+      }
+      
+      // We need to make sure each update adds a whole number to avoid
+      // floating point issues over time
+      
+      // If the rate is exactly divisible by our updates per second, great!
+      // Otherwise, we'll calculate how many whole increments to add each update,
+      // and handle the remainder by occasionally adding an extra increment
+      
+      const incrementPerInterval = Math.floor(autoClickRate / updatesPerSecond);
+      const remainder = autoClickRate % updatesPerSecond;
+      const intervalMs = 1000 / updatesPerSecond;
+      
+      let updateCounter = 0;
+      
       const interval = setInterval(() => {
-        setTotal((prev) => prev + autoClickRate);
-      }, 1000);
+        updateCounter = (updateCounter + 1) % updatesPerSecond;
+        
+        // Add the base increment amount plus an extra 1 if needed to handle the remainder
+        const extraIncrement = updateCounter < remainder ? 1 : 0;
+        setTotal((prev) => prev + incrementPerInterval + extraIncrement);
+      }, intervalMs);
+      
       return () => clearInterval(interval);
     }
   }, [autoClickRate]);
