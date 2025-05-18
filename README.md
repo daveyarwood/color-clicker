@@ -57,16 +57,8 @@ colors and eventually becomes black.
 
 ## TODO
 
-* Admin panel to assist with development
-
-* "Paid" features:
-  * Line wrapping
-  * Larger increments (e.g. 15, 30, 45)
-  * Auto-clicker
-  * Upgrade auto-clicker (increase rate/increment)
-  * Lotto ticket
-
-* Fake "ads" for the paid features ("tired of clicking?")
+* Lotto ticket feature
+* Fake "ads" for premium features ("tired of clicking?")
 
 * Incorporate shapes as well, e.g. other characters from the [UTF-8 Geometric
   Shapes][utf-geometric] charset. This could be useful for later in the game
