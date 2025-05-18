@@ -47,7 +47,7 @@ function App() {
         setClickIncrement((prev) => prev + 1);
         break;
       case "auto-clicker":
-        setAutoClickRate((prev) => prev > 0 ? prev : 1);
+        setAutoClickRate((prev) => (prev > 0 ? prev : 1));
         break;
       // Add other item effects here
     }
@@ -76,16 +76,21 @@ function App() {
       <div className="total-display">
         Total: {renderColorBlocks(total)}
         {shouldShowHint && total >= 1 && coreMechanicHint(total)}
-        {autoClickRate > 0 && <span className="rate-display"> (Earning {renderColorBlocks(autoClickRate)}/sec)</span>}
+        {autoClickRate > 0 && (
+          <span className="rate-display">
+            {" "}
+            (Earning {renderColorBlocks(autoClickRate)}/sec)
+          </span>
+        )}
       </div>
       <button key="adder-button" onClick={handleClick}>
         +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
       </button>
 
       <Shop total={total} onPurchase={handlePurchase} />
-      
-      <AdminPanel 
-        total={total} 
+
+      <AdminPanel
+        total={total}
         rate={autoClickRate}
         onUpdateTotal={(newTotal) => setTotal(newTotal)}
         onUpdateRate={(newRate) => setAutoClickRate(newRate)}
