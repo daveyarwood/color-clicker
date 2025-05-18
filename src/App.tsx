@@ -32,7 +32,7 @@ const coreMechanicHint = (total: number) => {
 function App() {
   const [total, setTotal] = useState(0);
   const [clickIncrement, setClickIncrement] = useState(1);
-  const [autoClickerActive, setAutoClickerActive] = useState(false);
+  const [autoClickRate, setAutoClickRate] = useState(0);
   const [shouldShowHint, setShouldShowHint] = useState(true);
 
   const handleClick = () => {
@@ -47,7 +47,7 @@ function App() {
         setClickIncrement((prev) => prev + 1);
         break;
       case "auto-clicker":
-        setAutoClickerActive(true);
+        setAutoClickRate((prev) => prev > 0 ? prev : 1);
         break;
       // Add other item effects here
     }
@@ -55,13 +55,13 @@ function App() {
 
   // Set up auto-clicker effect
   useEffect(() => {
-    if (autoClickerActive) {
+    if (autoClickRate > 0) {
       const interval = setInterval(() => {
-        setTotal((prev) => prev + 1);
+        setTotal((prev) => prev + autoClickRate);
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [autoClickerActive]);
+  }, [autoClickRate]);
 
   // Check if we should hide the hint permanently
   useEffect(() => {
@@ -70,16 +70,13 @@ function App() {
     }
   }, [total, shouldShowHint]);
 
-  // Calculate rate display for automatic collection
-  const automaticRate = autoClickerActive ? 1 : 0;
-  
   return (
     <div className="game-container">
       <h1>Color Clicker</h1>
       <div className="total-display">
         Total: {renderColorBlocks(total)}
         {shouldShowHint && total >= 1 && coreMechanicHint(total)}
-        {autoClickerActive && <span className="rate-display"> (Earning {renderColorBlocks(automaticRate)}/sec)</span>}
+        {autoClickRate > 0 && <span className="rate-display"> (Earning {renderColorBlocks(autoClickRate)}/sec)</span>}
       </div>
       <button key="adder-button" onClick={handleClick}>
         +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
@@ -89,15 +86,9 @@ function App() {
       
       <AdminPanel 
         total={total} 
-        rate={automaticRate}
+        rate={autoClickRate}
         onUpdateTotal={(newTotal) => setTotal(newTotal)}
-        onUpdateRate={(newRate) => {
-          if (newRate > 0 && !autoClickerActive) {
-            setAutoClickerActive(true);
-          } else if (newRate === 0 && autoClickerActive) {
-            setAutoClickerActive(false);
-          }
-        }}
+        onUpdateRate={(newRate) => setAutoClickRate(newRate)}
       />
     </div>
   );
