@@ -11,26 +11,49 @@
   align-items: center;
 }
 
+/* Two-column layout */
 .game-layout {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
   width: 100%;
+  justify-content: center;
   margin-top: 1rem;
 }
 
+/* Game main area - fixed width to prevent layout shift */
 .game-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 300px;
+  width: 300px;
+  padding-right: 2rem;
 }
 
 .rate-display {
   font-size: 0.8em;
   font-style: italic;
   margin-left: 5px;
+}
+
+.adder-button {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  min-width: 200px;
+  min-height: 60px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  transition: background-color 0.2s;
+}
+
+.adder-button:hover {
+  background-color: #e0e0e0;
+}
+
+.adder-button:active {
+  background-color: #d0d0d0;
 }
 
 .wrapped-blocks {

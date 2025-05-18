@@ -1,7 +1,8 @@
 .shop {
   padding: 1rem;
-  max-width: 400px;
+  width: 300px;
   border-left: 1px solid hsl(0 0% 80%);
+  min-height: 200px; /* Ensure space is reserved even when empty */
 }
 
 .shop-items {

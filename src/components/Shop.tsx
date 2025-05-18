@@ -148,8 +148,10 @@ export function Shop({ total, onPurchase }: ShopProps) {
     (item) => total >= item.unlockAt && !item.purchased
   );
 
+  // Always render the shop container, even when empty
+  // This ensures layout consistency and prevents the button from moving
   if (availableItems.length === 0) {
-    return null;
+    return <div className="shop"></div>;
   }
 
   return (

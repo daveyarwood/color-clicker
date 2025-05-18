@@ -119,7 +119,7 @@ function App() {
               </span>
             )}
           </div>
-          <button key="adder-button" onClick={handleClick}>
+          <button className="adder-button" onClick={handleClick}>
             +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
           </button>
         </div>
