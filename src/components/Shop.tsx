@@ -122,7 +122,6 @@ export function Shop({ total, onPurchase }: ShopProps) {
 
   return (
     <div className="shop">
-      <h2>Shop</h2>
       <div className="shop-items">
         {availableItems.map((item) => (
           <div key={item.id} className="shop-item">

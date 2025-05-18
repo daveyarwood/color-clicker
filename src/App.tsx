@@ -103,24 +103,29 @@ function App() {
   return (
     <div className="game-container">
       <h1>Color Clicker</h1>
-      <div className="total-display">
-        Total:{" "}
-        <span className={lineWrappingEnabled ? "wrapped-blocks" : ""}>
-          {renderColorBlocks(total)}
-        </span>
-        {shouldShowHint && total >= 1 && coreMechanicHint(total)}
-        {autoClickRate > 0 && (
-          <span className="rate-display">
-            {" "}
-            (Earning {renderColorBlocks(autoClickRate)}/sec)
-          </span>
-        )}
+      
+      <div className="game-layout">
+        <div className="game-main">
+          <div className="total-display">
+            Total:{" "}
+            <span className={lineWrappingEnabled ? "wrapped-blocks" : ""}>
+              {renderColorBlocks(total)}
+            </span>
+            {shouldShowHint && total >= 1 && coreMechanicHint(total)}
+            {autoClickRate > 0 && (
+              <span className="rate-display">
+                {" "}
+                (Earning {renderColorBlocks(autoClickRate)}/sec)
+              </span>
+            )}
+          </div>
+          <button key="adder-button" onClick={handleClick}>
+            +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
+          </button>
+        </div>
+        
+        <Shop total={total} onPurchase={handlePurchase} />
       </div>
-      <button key="adder-button" onClick={handleClick}>
-        +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
-      </button>
-
-      <Shop total={total} onPurchase={handlePurchase} />
 
       <AdminPanel
         total={total}

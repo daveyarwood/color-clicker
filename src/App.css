@@ -5,6 +5,28 @@
   text-align: center;
 }
 
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.game-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+}
+
 .rate-display {
   font-size: 0.8em;
   font-style: italic;
