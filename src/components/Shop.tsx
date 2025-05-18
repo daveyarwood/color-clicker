@@ -22,7 +22,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "increment",
       name: "Shade Enhancer",
-      description: "Each click gives +1 more Shade",
+      description: "Each click earns 1 Shade",
       cost: 50,
       unlockAt: 20,
       purchased: false,
@@ -30,7 +30,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "auto-clicker",
       name: "Shade Collector",
-      description: "Automatically collects 1 Shade per second",
+      description: "Automatically earn 1 Shade per second",
       cost: 100,
       unlockAt: 40,
       purchased: false,
@@ -38,7 +38,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "increment-5",
       name: "Advanced Shade Enhancer",
-      description: "Each click gives +5 more Shades",
+      description: "Each click earns 5 Shades",
       cost: 500,
       unlockAt: 100,  // Show much earlier than affordable
       purchased: false,
@@ -46,7 +46,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "auto-clicker-5",
       name: "Advanced Shade Collector",
-      description: "Increases auto collection by +5 Shades per second",
+      description: "Automatically earn 5 Shades per second",
       cost: 1000,
       unlockAt: 150,  // Show earlier to create choice vs. increment-5
       purchased: false,
@@ -54,7 +54,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "increment-10",
       name: "Superior Shade Enhancer",
-      description: "Each click gives +10 more Shades",
+      description: "Each click earns 10 Shades",
       cost: 2000,
       unlockAt: 500,  // Show earlier to tempt saving
       purchased: false,
@@ -62,7 +62,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "auto-clicker-10",
       name: "Superior Shade Collector",
-      description: "Increases auto collection by +10 Shades per second",
+      description: "Automatically earn 10 Shades per second",
       cost: 5000,
       unlockAt: 1000,  // Show earlier to create decision point
       purchased: false,
@@ -78,7 +78,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "increment-50",
       name: "Ultimate Shade Enhancer",
-      description: "Each click gives +50 more Shades",
+      description: "Each click earns 50 Shades",
       cost: 10000,
       unlockAt: 3000,
       purchased: false,
@@ -86,7 +86,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "auto-clicker-50",
       name: "Ultimate Shade Collector",
-      description: "Increases auto collection by +50 Shades per second",
+      description: "Automatically earn 50 Shades per second",
       cost: 25000,
       unlockAt: 5000,
       purchased: false,
@@ -94,18 +94,50 @@ export function Shop({ total, onPurchase }: ShopProps) {
     {
       id: "increment-100",
       name: "Legendary Shade Enhancer",
-      description: "Each click gives +100 more Shades",
+      description: "Each click earns 100 Shades",
       cost: 50000,
       unlockAt: 10000,
       purchased: false,
     },
   ]);
 
+  // Helper to determine which upgrades should be marked as purchased
+  const getItemsTiersToPurchase = (itemId: string): string[] => {
+    // Define item tiers for auto-clickers
+    const autoClickerTiers = ["auto-clicker", "auto-clicker-5", "auto-clicker-10", "auto-clicker-50"];
+    // Define item tiers for click enhancers
+    const incrementTiers = ["increment", "increment-5", "increment-10", "increment-50", "increment-100"];
+    
+    // If item is an auto-clicker, mark all lower tiers as purchased
+    if (itemId.startsWith("auto-clicker")) {
+      const index = autoClickerTiers.indexOf(itemId);
+      if (index > 0) {
+        return autoClickerTiers.slice(0, index + 1);
+      }
+    }
+    
+    // If item is a click enhancer, mark all lower tiers as purchased
+    if (itemId.startsWith("increment")) {
+      const index = incrementTiers.indexOf(itemId);
+      if (index > 0) {
+        return incrementTiers.slice(0, index + 1);
+      }
+    }
+    
+    // Default: just mark this item as purchased
+    return [itemId];
+  };
+
   const handlePurchase = (item: ShopItem) => {
     if (total >= item.cost && !item.purchased) {
       onPurchase(item.id, item.cost);
+      
+      // Get all tier items that should be marked as purchased
+      const tiersToPurchase = getItemsTiersToPurchase(item.id);
+      
+      // Mark all relevant tiers as purchased
       setItems(
-        items.map((i) => (i.id === item.id ? { ...i, purchased: true } : i))
+        items.map((i) => tiersToPurchase.includes(i.id) ? { ...i, purchased: true } : i)
       );
     }
   };

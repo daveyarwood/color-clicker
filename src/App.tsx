@@ -44,35 +44,35 @@ function App() {
     setTotal((prev) => prev - cost);
 
     switch (itemId) {
-      // Click increment upgrades
+      // Click increment upgrades - each sets a specific value
       case "increment":
-        setClickIncrement((prev) => prev + 1);
+        setClickIncrement(1);
         break;
       case "increment-5":
-        setClickIncrement((prev) => prev + 5);
+        setClickIncrement(5);
         break;
       case "increment-10":
-        setClickIncrement((prev) => prev + 10);
+        setClickIncrement(10);
         break;
       case "increment-50":
-        setClickIncrement((prev) => prev + 50);
+        setClickIncrement(50);
         break;
       case "increment-100":
-        setClickIncrement((prev) => prev + 100);
+        setClickIncrement(100);
         break;
         
-      // Auto-click upgrades
+      // Auto-click upgrades - each sets a specific value
       case "auto-clicker":
-        setAutoClickRate((prev) => (prev > 0 ? prev : 1));
+        setAutoClickRate(1);
         break;
       case "auto-clicker-5":
-        setAutoClickRate((prev) => prev + 5);
+        setAutoClickRate(5);
         break;
       case "auto-clicker-10":
-        setAutoClickRate((prev) => prev + 10);
+        setAutoClickRate(10);
         break;
       case "auto-clicker-50":
-        setAutoClickRate((prev) => prev + 50);
+        setAutoClickRate(50);
         break;
         
       // Utility upgrades
