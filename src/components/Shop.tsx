@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { renderColorBlocks } from "../hsl";
 
 export interface ShopItem {
@@ -16,6 +16,18 @@ interface ShopProps {
 }
 
 export function Shop({ total, onPurchase }: ShopProps) {
+  // State for purchase notification
+  const [purchaseFlash, setPurchaseFlash] = useState<string | null>(null);
+  
+  // Clear purchase notification after animation
+  useEffect(() => {
+    if (purchaseFlash) {
+      const timer = setTimeout(() => {
+        setPurchaseFlash(null);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [purchaseFlash]);
   // This will be expanded with real items later
   const [items, setItems] = useState<ShopItem[]>([
     // Click increment upgrades
@@ -152,6 +164,9 @@ export function Shop({ total, onPurchase }: ShopProps) {
           tiersToPurchase.includes(i.id) ? { ...i, purchased: true } : i,
         ),
       );
+      
+      // Show purchase notification
+      setPurchaseFlash(`Purchased <strong>${item.name}</strong>!`);
     }
   };
 
@@ -169,24 +184,32 @@ export function Shop({ total, onPurchase }: ShopProps) {
 
   return (
     <div className="shop">
+      {purchaseFlash && (
+        <div 
+          className="purchase-flash"
+          dangerouslySetInnerHTML={{ __html: purchaseFlash }}
+        />
+      )}
       <div className="shop-items">
-        {availableItems.map((item) => (
-          <div key={item.id} className="shop-item">
-            <div className="shop-item-info">
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <p className="shop-item-cost">
-                Cost: {renderColorBlocks(item.cost)}
-              </p>
-            </div>
-            <button
-              onClick={() => handlePurchase(item)}
-              disabled={total < item.cost}
+        {availableItems.map((item) => {
+          const canAfford = total >= item.cost;
+          
+          return (
+            <div 
+              key={item.id} 
+              className={`shop-item ${canAfford ? 'affordable' : 'unaffordable'}`}
+              onClick={() => canAfford && handlePurchase(item)}
             >
-              Buy
-            </button>
-          </div>
-        ))}
+              <div className="shop-item-info">
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+                <p className="shop-item-cost">
+                  Cost: {renderColorBlocks(item.cost)}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

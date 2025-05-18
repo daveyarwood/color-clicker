@@ -13,15 +13,33 @@
 
 .shop-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   padding: 1rem;
   background-color: hsl(0 0% 95%);
   border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.shop-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shop-item.affordable {
+  opacity: 1;
+}
+
+.shop-item.unaffordable {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .shop-item-info {
   text-align: left;
+  width: 100%;
 }
 
 .shop-item-info h3 {
@@ -35,13 +53,28 @@
 .shop-item-cost {
   font-weight: bold;
   margin-top: 0.5rem !important;
+  text-align: right;
 }
 
-.shop-item button {
-  min-width: 100px;
+/* Purchase flash notification */
+.purchase-flash {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  z-index: 1000;
+  animation: fadeInOut 2s ease-in-out forwards;
+  max-width: 80%;
+  text-align: center;
 }
 
-.shop-item button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -20px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
 }
