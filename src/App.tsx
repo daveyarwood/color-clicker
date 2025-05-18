@@ -45,8 +45,8 @@ function App() {
 
     switch (itemId) {
       // Click increment upgrades - each sets a specific value
-      case "increment":
-        setClickIncrement(1);
+      case "increment-2":
+        setClickIncrement(2);
         break;
       case "increment-5":
         setClickIncrement(5);

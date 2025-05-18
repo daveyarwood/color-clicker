@@ -20,9 +20,9 @@ export function Shop({ total, onPurchase }: ShopProps) {
   const [items, setItems] = useState<ShopItem[]>([
     // Click increment upgrades
     {
-      id: "increment",
+      id: "increment-2",
       name: "Shade Enhancer",
-      description: "Each click earns 1 Shade",
+      description: "Each click earns 2 Shades",
       cost: 50,
       unlockAt: 20,
       purchased: false,
