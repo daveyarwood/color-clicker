@@ -88,7 +88,7 @@ function App() {
     if (autoClickRate > 0) {
       // Choose a reasonable number of updates per second based on the rate
       // Higher rates get more frequent updates for smoother visualization
-      let updatesPerSecond;
+      let updatesPerSecond: number;
       
       if (autoClickRate === 1) {
         updatesPerSecond = 1; // Just update once per second for rate of 1
