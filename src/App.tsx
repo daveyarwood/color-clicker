@@ -103,9 +103,6 @@ function App() {
   return (
     <div className="game-container">
       <h1>Color Clicker</h1>
-      <div className="version-indicator" style={{ fontSize: '0.7em', opacity: 0.7 }}>
-        Build: 2025-05-18-001
-      </div>
 
       <div className="game-layout">
         <div className="game-main">
