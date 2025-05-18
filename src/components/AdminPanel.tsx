@@ -8,30 +8,35 @@ interface AdminPanelProps {
   onUpdateRate: (newRate: number) => void;
 }
 
-export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPanelProps) {
+export function AdminPanel({
+  total,
+  rate,
+  onUpdateTotal,
+  onUpdateRate,
+}: AdminPanelProps) {
   // State for total input
   const [totalInputValue, setTotalInputValue] = useState(total.toString());
   const [isTotalEditing, setIsTotalEditing] = useState(false);
   const totalInputRef = useRef<HTMLInputElement>(null);
-  
+
   // State for rate input
   const [rateInputValue, setRateInputValue] = useState(rate.toString());
   const [isRateEditing, setIsRateEditing] = useState(false);
   const rateInputRef = useRef<HTMLInputElement>(null);
-  
+
   // Update input values when props change (only when not editing)
   useEffect(() => {
     if (!isTotalEditing) {
       setTotalInputValue(total.toString());
     }
   }, [total, isTotalEditing]);
-  
+
   useEffect(() => {
     if (!isRateEditing) {
       setRateInputValue(rate.toString());
     }
   }, [rate, isRateEditing]);
-  
+
   // Handle total change
   const handleTotalEdit = () => {
     setIsTotalEditing(true);
@@ -42,7 +47,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
       }
     }, 0);
   };
-  
+
   const handleTotalSave = () => {
     const newTotal = parseInt(totalInputValue);
     if (!isNaN(newTotal)) {
@@ -53,7 +58,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
     }
     setIsTotalEditing(false);
   };
-  
+
   // Handle rate change
   const handleRateEdit = () => {
     setIsRateEditing(true);
@@ -64,7 +69,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
       }
     }, 0);
   };
-  
+
   const handleRateSave = () => {
     const newRate = parseInt(rateInputValue);
     if (!isNaN(newRate)) {
@@ -75,7 +80,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
     }
     setIsRateEditing(false);
   };
-  
+
   return (
     <div className="admin-panel">
       <h3>Admin Panel</h3>
@@ -88,7 +93,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
           onChange={(e) => setTotalInputValue(e.target.value)}
           disabled={!isTotalEditing}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && isTotalEditing) {
+            if (e.key === "Enter" && isTotalEditing) {
               handleTotalSave();
             }
           }}
@@ -99,7 +104,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
           <button onClick={handleTotalEdit}>Edit</button>
         )}
       </div>
-      
+
       <div className="admin-control">
         <label>Rate:</label>
         <input
@@ -109,7 +114,7 @@ export function AdminPanel({ total, rate, onUpdateTotal, onUpdateRate }: AdminPa
           onChange={(e) => setRateInputValue(e.target.value)}
           disabled={!isRateEditing}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && isRateEditing) {
+            if (e.key === "Enter" && isRateEditing) {
               handleRateSave();
             }
           }}

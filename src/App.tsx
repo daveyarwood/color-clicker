@@ -60,7 +60,7 @@ function App() {
       case "increment-100":
         setClickIncrement(100);
         break;
-        
+
       // Auto-click upgrades - each sets a specific value
       case "auto-clicker":
         setAutoClickRate(1);
@@ -74,7 +74,7 @@ function App() {
       case "auto-clicker-50":
         setAutoClickRate(50);
         break;
-        
+
       // Utility upgrades
       case "wrap":
         setLineWrappingEnabled(true);
@@ -103,7 +103,7 @@ function App() {
   return (
     <div className="game-container">
       <h1>Color Clicker</h1>
-      
+
       <div className="game-layout">
         <div className="game-main">
           <div className="total-display">
@@ -123,7 +123,7 @@ function App() {
             +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
           </button>
         </div>
-        
+
         <Shop total={total} onPurchase={handlePurchase} />
       </div>
 

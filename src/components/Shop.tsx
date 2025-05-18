@@ -40,7 +40,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Advanced Shade Enhancer",
       description: "Each click earns 5 Shades",
       cost: 500,
-      unlockAt: 100,  // Show much earlier than affordable
+      unlockAt: 100, // Show much earlier than affordable
       purchased: false,
     },
     {
@@ -48,7 +48,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Advanced Shade Collector",
       description: "Automatically earn 5 Shades per second",
       cost: 1000,
-      unlockAt: 150,  // Show earlier to create choice vs. increment-5
+      unlockAt: 150, // Show earlier to create choice vs. increment-5
       purchased: false,
     },
     {
@@ -56,7 +56,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Superior Shade Enhancer",
       description: "Each click earns 10 Shades",
       cost: 2000,
-      unlockAt: 500,  // Show earlier to tempt saving
+      unlockAt: 500, // Show earlier to tempt saving
       purchased: false,
     },
     {
@@ -64,7 +64,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Superior Shade Collector",
       description: "Automatically earn 10 Shades per second",
       cost: 5000,
-      unlockAt: 1000,  // Show earlier to create decision point
+      unlockAt: 1000, // Show earlier to create decision point
       purchased: false,
     },
     {
@@ -72,7 +72,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Line Wrapping",
       description: "Makes the total display wrap to multiple lines",
       cost: 2500,
-      unlockAt: 1200,  // Show much earlier, but still after the display gets lengthy
+      unlockAt: 1200, // Show much earlier, but still after the display gets lengthy
       purchased: false,
     },
     {
@@ -104,10 +104,21 @@ export function Shop({ total, onPurchase }: ShopProps) {
   // Helper to determine which upgrades should be marked as purchased
   const getItemsTiersToPurchase = (itemId: string): string[] => {
     // Define item tiers for auto-clickers
-    const autoClickerTiers = ["auto-clicker", "auto-clicker-5", "auto-clicker-10", "auto-clicker-50"];
+    const autoClickerTiers = [
+      "auto-clicker",
+      "auto-clicker-5",
+      "auto-clicker-10",
+      "auto-clicker-50",
+    ];
     // Define item tiers for click enhancers
-    const incrementTiers = ["increment", "increment-5", "increment-10", "increment-50", "increment-100"];
-    
+    const incrementTiers = [
+      "increment",
+      "increment-5",
+      "increment-10",
+      "increment-50",
+      "increment-100",
+    ];
+
     // If item is an auto-clicker, mark all lower tiers as purchased
     if (itemId.startsWith("auto-clicker")) {
       const index = autoClickerTiers.indexOf(itemId);
@@ -115,7 +126,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
         return autoClickerTiers.slice(0, index + 1);
       }
     }
-    
+
     // If item is a click enhancer, mark all lower tiers as purchased
     if (itemId.startsWith("increment")) {
       const index = incrementTiers.indexOf(itemId);
@@ -123,7 +134,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
         return incrementTiers.slice(0, index + 1);
       }
     }
-    
+
     // Default: just mark this item as purchased
     return [itemId];
   };
@@ -131,13 +142,15 @@ export function Shop({ total, onPurchase }: ShopProps) {
   const handlePurchase = (item: ShopItem) => {
     if (total >= item.cost && !item.purchased) {
       onPurchase(item.id, item.cost);
-      
+
       // Get all tier items that should be marked as purchased
       const tiersToPurchase = getItemsTiersToPurchase(item.id);
-      
+
       // Mark all relevant tiers as purchased
       setItems(
-        items.map((i) => tiersToPurchase.includes(i.id) ? { ...i, purchased: true } : i)
+        items.map((i) =>
+          tiersToPurchase.includes(i.id) ? { ...i, purchased: true } : i,
+        ),
       );
     }
   };
@@ -145,11 +158,11 @@ export function Shop({ total, onPurchase }: ShopProps) {
   // Only display items that should be unlocked based on the player's progress
   // and filter out purchased items
   const availableItems = items.filter(
-    (item) => total >= item.unlockAt && !item.purchased
+    (item) => total >= item.unlockAt && !item.purchased,
   );
 
   // Always render the shop container, even when empty
-  // This ensures layout consistency and prevents the button from moving
+  // This ensures layout consistency
   if (availableItems.length === 0) {
     return <div className="shop"></div>;
   }
@@ -162,7 +175,9 @@ export function Shop({ total, onPurchase }: ShopProps) {
             <div className="shop-item-info">
               <h3>{item.name}</h3>
               <p>{item.description}</p>
-              <p className="shop-item-cost">Cost: {renderColorBlocks(item.cost)}</p>
+              <p className="shop-item-cost">
+                Cost: {renderColorBlocks(item.cost)}
+              </p>
             </div>
             <button
               onClick={() => handlePurchase(item)}
