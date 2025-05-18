@@ -24,7 +24,15 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Shade Enhancer",
       description: "Each click gives +1 more Shade",
       cost: 50,
-      unlockAt: 30,
+      unlockAt: 20,
+      purchased: false,
+    },
+    {
+      id: "auto-clicker",
+      name: "Shade Collector",
+      description: "Automatically collects 1 Shade per second",
+      cost: 100,
+      unlockAt: 40,
       purchased: false,
     },
     {
@@ -32,7 +40,15 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Advanced Shade Enhancer",
       description: "Each click gives +5 more Shades",
       cost: 500,
-      unlockAt: 200,
+      unlockAt: 100,  // Show much earlier than affordable
+      purchased: false,
+    },
+    {
+      id: "auto-clicker-5",
+      name: "Advanced Shade Collector",
+      description: "Increases auto collection by +5 Shades per second",
+      cost: 1000,
+      unlockAt: 150,  // Show earlier to create choice vs. increment-5
       purchased: false,
     },
     {
@@ -40,7 +56,23 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Superior Shade Enhancer",
       description: "Each click gives +10 more Shades",
       cost: 2000,
-      unlockAt: 1000,
+      unlockAt: 500,  // Show earlier to tempt saving
+      purchased: false,
+    },
+    {
+      id: "auto-clicker-10",
+      name: "Superior Shade Collector",
+      description: "Increases auto collection by +10 Shades per second",
+      cost: 5000,
+      unlockAt: 1000,  // Show earlier to create decision point
+      purchased: false,
+    },
+    {
+      id: "wrap",
+      name: "Line Wrapping",
+      description: "Makes the total display wrap to multiple lines",
+      cost: 2500,
+      unlockAt: 1200,  // Show much earlier, but still after the display gets lengthy
       purchased: false,
     },
     {
@@ -48,6 +80,14 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Ultimate Shade Enhancer",
       description: "Each click gives +50 more Shades",
       cost: 10000,
+      unlockAt: 3000,
+      purchased: false,
+    },
+    {
+      id: "auto-clicker-50",
+      name: "Ultimate Shade Collector",
+      description: "Increases auto collection by +50 Shades per second",
+      cost: 25000,
       unlockAt: 5000,
       purchased: false,
     },
@@ -56,51 +96,7 @@ export function Shop({ total, onPurchase }: ShopProps) {
       name: "Legendary Shade Enhancer",
       description: "Each click gives +100 more Shades",
       cost: 50000,
-      unlockAt: 20000,
-      purchased: false,
-    },
-    
-    // Auto-click upgrades
-    {
-      id: "auto-clicker",
-      name: "Shade Collector",
-      description: "Automatically collects 1 Shade per second",
-      cost: 100,
-      unlockAt: 60,
-      purchased: false,
-    },
-    {
-      id: "auto-clicker-5",
-      name: "Advanced Shade Collector",
-      description: "Increases auto collection by +5 Shades per second",
-      cost: 1000,
-      unlockAt: 500,
-      purchased: false,
-    },
-    {
-      id: "auto-clicker-10",
-      name: "Superior Shade Collector",
-      description: "Increases auto collection by +10 Shades per second",
-      cost: 5000,
-      unlockAt: 2500,
-      purchased: false,
-    },
-    {
-      id: "auto-clicker-50",
-      name: "Ultimate Shade Collector",
-      description: "Increases auto collection by +50 Shades per second",
-      cost: 25000,
-      unlockAt: 12000,
-      purchased: false,
-    },
-    
-    // Utility upgrades
-    {
-      id: "wrap",
-      name: "Line Wrapping",
-      description: "Makes the total display wrap to multiple lines",
-      cost: 2500,
-      unlockAt: 10800,  // Appears when display becomes annoyingly long (30 blocks)
+      unlockAt: 10000,
       purchased: false,
     },
   ]);
