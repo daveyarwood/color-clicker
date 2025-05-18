@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { renderColorBlocks } from "./hsl";
 import { Shop } from "./components/Shop";
+import { AdminPanel } from "./components/AdminPanel";
 import "./components/Shop.css";
+import "./components/AdminPanel.css";
 import "./App.css";
 
 const DISPLAY_CORE_MECHANIC_HINT_MAX = 50; // When to stop showing the hint
@@ -84,6 +86,19 @@ function App() {
       </button>
 
       <Shop total={total} onPurchase={handlePurchase} />
+      
+      <AdminPanel 
+        total={total} 
+        rate={automaticRate}
+        onUpdateTotal={(newTotal) => setTotal(newTotal)}
+        onUpdateRate={(newRate) => {
+          if (newRate > 0 && !autoClickerActive) {
+            setAutoClickerActive(true);
+          } else if (newRate === 0 && autoClickerActive) {
+            setAutoClickerActive(false);
+          }
+        }}
+      />
     </div>
   );
 }

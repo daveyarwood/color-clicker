@@ -1,0 +1,49 @@
+.admin-panel {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-panel h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.admin-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.admin-control label {
+  min-width: 60px;
+  text-align: right;
+  margin-right: 10px;
+  font-size: 0.9em;
+}
+
+.admin-control input {
+  flex: 1;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.admin-control input:disabled {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+.admin-control button {
+  padding: 3px 10px;
+  font-size: 0.8em;
+  min-width: 60px;
+}
