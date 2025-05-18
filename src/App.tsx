@@ -78,7 +78,7 @@ function App() {
     <div className="game-container">
       <h1>Color Clicker</h1>
       <div className="total-display">
-        Total: 
+        Total:{" "}
         <span className={lineWrappingEnabled ? "wrapped-blocks" : ""}>
           {renderColorBlocks(total)}
         </span>
