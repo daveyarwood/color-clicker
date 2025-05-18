@@ -44,12 +44,38 @@ function App() {
     setTotal((prev) => prev - cost);
 
     switch (itemId) {
+      // Click increment upgrades
       case "increment":
         setClickIncrement((prev) => prev + 1);
         break;
+      case "increment-5":
+        setClickIncrement((prev) => prev + 5);
+        break;
+      case "increment-10":
+        setClickIncrement((prev) => prev + 10);
+        break;
+      case "increment-50":
+        setClickIncrement((prev) => prev + 50);
+        break;
+      case "increment-100":
+        setClickIncrement((prev) => prev + 100);
+        break;
+        
+      // Auto-click upgrades
       case "auto-clicker":
         setAutoClickRate((prev) => (prev > 0 ? prev : 1));
         break;
+      case "auto-clicker-5":
+        setAutoClickRate((prev) => prev + 5);
+        break;
+      case "auto-clicker-10":
+        setAutoClickRate((prev) => prev + 10);
+        break;
+      case "auto-clicker-50":
+        setAutoClickRate((prev) => prev + 50);
+        break;
+        
+      // Utility upgrades
       case "wrap":
         setLineWrappingEnabled(true);
         break;

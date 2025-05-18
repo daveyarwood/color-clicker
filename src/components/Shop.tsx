@@ -18,6 +18,7 @@ interface ShopProps {
 export function Shop({ total, onPurchase }: ShopProps) {
   // This will be expanded with real items later
   const [items, setItems] = useState<ShopItem[]>([
+    // Click increment upgrades
     {
       id: "increment",
       name: "Shade Enhancer",
@@ -27,6 +28,40 @@ export function Shop({ total, onPurchase }: ShopProps) {
       purchased: false,
     },
     {
+      id: "increment-5",
+      name: "Advanced Shade Enhancer",
+      description: "Each click gives +5 more Shades",
+      cost: 500,
+      unlockAt: 200,
+      purchased: false,
+    },
+    {
+      id: "increment-10",
+      name: "Superior Shade Enhancer",
+      description: "Each click gives +10 more Shades",
+      cost: 2000,
+      unlockAt: 1000,
+      purchased: false,
+    },
+    {
+      id: "increment-50",
+      name: "Ultimate Shade Enhancer",
+      description: "Each click gives +50 more Shades",
+      cost: 10000,
+      unlockAt: 5000,
+      purchased: false,
+    },
+    {
+      id: "increment-100",
+      name: "Legendary Shade Enhancer",
+      description: "Each click gives +100 more Shades",
+      cost: 50000,
+      unlockAt: 20000,
+      purchased: false,
+    },
+    
+    // Auto-click upgrades
+    {
       id: "auto-clicker",
       name: "Shade Collector",
       description: "Automatically collects 1 Shade per second",
@@ -34,6 +69,32 @@ export function Shop({ total, onPurchase }: ShopProps) {
       unlockAt: 60,
       purchased: false,
     },
+    {
+      id: "auto-clicker-5",
+      name: "Advanced Shade Collector",
+      description: "Increases auto collection by +5 Shades per second",
+      cost: 1000,
+      unlockAt: 500,
+      purchased: false,
+    },
+    {
+      id: "auto-clicker-10",
+      name: "Superior Shade Collector",
+      description: "Increases auto collection by +10 Shades per second",
+      cost: 5000,
+      unlockAt: 2500,
+      purchased: false,
+    },
+    {
+      id: "auto-clicker-50",
+      name: "Ultimate Shade Collector",
+      description: "Increases auto collection by +50 Shades per second",
+      cost: 25000,
+      unlockAt: 12000,
+      purchased: false,
+    },
+    
+    // Utility upgrades
     {
       id: "wrap",
       name: "Line Wrapping",
