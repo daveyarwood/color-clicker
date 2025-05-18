@@ -32,4 +32,5 @@ jobs:
         with:
           folder: dist
           clean: true
+          force: true
           branch: gh-pages
