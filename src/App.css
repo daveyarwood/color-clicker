@@ -4,3 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+.rate-display {
+  font-size: 0.8em;
+  font-style: italic;
+  margin-left: 5px;
+}

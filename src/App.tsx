@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { renderColorBlocks } from "./hsl";
 import { Shop } from "./components/Shop";
 import "./components/Shop.css";
+import "./App.css";
 
 const DISPLAY_CORE_MECHANIC_HINT_MAX = 50; // When to stop showing the hint
 
@@ -67,12 +68,16 @@ function App() {
     }
   }, [total, shouldShowHint]);
 
+  // Calculate rate display for automatic collection
+  const automaticRate = autoClickerActive ? 1 : 0;
+  
   return (
     <div className="game-container">
       <h1>Color Clicker</h1>
       <div className="total-display">
         Total: {renderColorBlocks(total)}
         {shouldShowHint && total >= 1 && coreMechanicHint(total)}
+        {autoClickerActive && <span className="rate-display"> (Earning {renderColorBlocks(automaticRate)}/sec)</span>}
       </div>
       <button key="adder-button" onClick={handleClick}>
         +{clickIncrement} {clickIncrement === 1 ? "Shade" : "Shades"}
